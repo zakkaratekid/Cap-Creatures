@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Cap Creatures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="hero-alt">
+        <h1>Checkout</h1>
+        <p>Complete your order and get ready to show off your new Cap Creature.</p>
+    </div>
+
+    <div class="card">
+        <h2>Your Order</h2>
+        <p>Thanks for shopping with Cap Creatures! Fill in your details and confirm your order below.</p>
+        <ul class="checkout-list">
+            <li>1x Cap Creature Accessory</li>
+            <li>Shipping: Standard</li>
+            <li>Total: £10.00</li>
+        </ul>
+
+        <form id="checkout-form" class="checkout-form">
+            <label>
+                Name
+                <input type="text" name="name" placeholder="Your full name" required>
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+                Delivery Address
+                <textarea name="address" rows="4" placeholder="Street, city, postcode" required></textarea>
+            </label>
+            <div class="payment-row">
+                <label>
+                    <input type="radio" name="payment" value="card" checked>
+                    Card
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="paypal">
+                    PayPal
+                </label>
+            </div>
+            <button type="submit" class="view-button">Confirm Order</button>
+        </form>
+
+        <div id="order-confirmation" class="order-confirmation" hidden>
+            <h3>Order Confirmed!</h3>
+            <p>Thanks for your purchase. We've received your order and will reach out shortly with shipping details.</p>
+            <a href="index.html" class="view-button">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Cap Creatures</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('checkout-form').hidden = true;
+            var confirmation = document.getElementById('order-confirmation');
+            confirmation.hidden = false;
+            confirmation.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

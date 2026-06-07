@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cap Creatures | Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="hero-alt">
+        <h1>Which Creature Are You?</h1>
+        <p>Answer a few fun questions to discover your perfect Cap Creature match.</p>
+    </div>
+
+    <div class="card quiz-card">
+        <div class="quiz-progress" id="quiz-progress">
+            <div class="quiz-progress-track">
+                <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+            </div>
+            <span id="quiz-progress-label">0 / 4 answered</span>
+        </div>
+        <form id="creature-quiz">
+            <div class="quiz-question">
+                <h2>1. What do you enjoy most?</h2>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q1" value="snake"> Quiet, sleek adventure</label>
+                    <label><input type="radio" name="q1" value="frog"> Playful nature and jumping around</label>
+                    <label><input type="radio" name="q1" value="crocodile"> Bold, powerful experiences</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h2>2. Pick a favourite place to explore:</h2>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q2" value="snake"> A misty forest trail</label>
+                    <label><input type="radio" name="q2" value="frog"> A sunny pond edge</label>
+                    <label><input type="radio" name="q2" value="crocodile"> A rugged riverbank</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h2>3. Which hat vibe suits you?</h2>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q3" value="snake"> Sleek and mysterious</label>
+                    <label><input type="radio" name="q3" value="frog"> Bright and fun</label>
+                    <label><input type="radio" name="q3" value="crocodile"> Strong and fearless</label>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h2>4. What describes your energy?</h2>
+                <div class="quiz-options">
+                    <label><input type="radio" name="q4" value="snake"> Calm and clever</label>
+                    <label><input type="radio" name="q4" value="frog"> Friendly and curious</label>
+                    <label><input type="radio" name="q4" value="crocodile"> Confident and bold</label>
+                </div>
+            </div>
+
+            <button type="submit" class="view-button">See My Creature</button>
+        </form>
+
+        <div id="quiz-result" class="quiz-result" hidden>
+            <div class="quiz-result-badge">Creature Match</div>
+            <h2 id="quiz-result-title"></h2>
+            <img id="quiz-result-image" src="" alt="Creature result image">
+            <p id="quiz-result-copy"></p>
+            <button id="quiz-retake" class="view-button">Retake Quiz</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Cap Creatures</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
