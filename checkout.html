@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="topnav">
+    <div class="topnav" role="navigation" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
@@ -15,6 +15,7 @@
         <a href="contact.html">Contact</a>
     </div>
 
+    <main id="main-content">
     <div class="hero-alt">
         <h1>Checkout</h1>
         <p>Complete your order and get ready to show off your new Cap Creature.</p>
@@ -30,37 +31,31 @@
         </ul>
 
         <form id="checkout-form" class="checkout-form">
-            <label>
-                Name
-                <input type="text" name="name" placeholder="Your full name" required>
-            </label>
-            <label>
-                Email
-                <input type="email" name="email" placeholder="you@example.com" required>
-            </label>
-            <label>
-                Delivery Address
-                <textarea name="address" rows="4" placeholder="Street, city, postcode" required></textarea>
-            </label>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Your full name" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@example.com" required>
+
+            <label for="address">Delivery Address</label>
+            <textarea id="address" name="address" rows="4" placeholder="Street, city, postcode" required></textarea>
             <div class="payment-row">
-                <label>
-                    <input type="radio" name="payment" value="card" checked>
-                    Card
-                </label>
-                <label>
-                    <input type="radio" name="payment" value="paypal">
-                    PayPal
-                </label>
+                <input id="payment-card" type="radio" name="payment" value="card" checked>
+                <label for="payment-card">Card</label>
+
+                <input id="payment-paypal" type="radio" name="payment" value="paypal">
+                <label for="payment-paypal">PayPal</label>
             </div>
             <button type="submit" class="view-button">Confirm Order</button>
         </form>
 
-        <div id="order-confirmation" class="order-confirmation" hidden>
+        <div id="order-confirmation" class="order-confirmation" hidden role="status" aria-live="polite" tabindex="-1">
             <h3>Order Confirmed!</h3>
             <p>Thanks for your purchase. We've received your order and will reach out shortly with shipping details.</p>
             <a href="index.html" class="view-button">Back to Home</a>
         </div>
     </div>
+    </main>
 
     <footer>
         <p>© 2026 Cap Creatures</p>
@@ -74,6 +69,8 @@
             var confirmation = document.getElementById('order-confirmation');
             confirmation.hidden = false;
             confirmation.scrollIntoView({ behavior: 'smooth' });
+            // Move focus to the confirmation region so screen readers announce it
+            setTimeout(function(){ confirmation.focus(); }, 300);
         });
     </script>
 </body>

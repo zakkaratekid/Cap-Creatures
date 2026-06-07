@@ -65,6 +65,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Responsive nav toggle (accessibility + small screens)
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('primary-navigation');
+    if (navToggle && topnav && navLinks) {
+        navToggle.addEventListener('click', function () {
+            const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', String(!expanded));
+            topnav.classList.toggle('open');
+            if (!expanded) {
+                navLinks.querySelector('a')?.focus();
+            } else {
+                navToggle.focus();
+            }
+        });
+    }
+
     setTheme(isDarkMode ? 'dark' : 'light');
 
     const backToTop = document.createElement('button');

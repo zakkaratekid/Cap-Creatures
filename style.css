@@ -529,13 +529,77 @@ footer p {
     .topnav a,
     nav a {
         float: none;
-        width: 100%;
+        width: auto;
+        display: inline-block;
         padding: 14px 16px;
     }
     
     .card {
         width: 100%;
     }
+}
+
+/* Mobile-only accessibility tweaks (no desktop layout changes) */
+@media (max-width: 600px) {
+    /* Slightly larger base type for readability on phones */
+    html { font-size: 18px; }
+    body { line-height: 1.75; }
+
+    /* Nav stays horizontal on phones: scrollable row, easy to tap */
+    .topnav {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 6px 8px;
+    }
+    .topnav a,
+    .topnav .nav-links a {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 10px 14px;
+        font-size: 1.02rem;
+    }
+    /* If nav-links wrapper exists, show as row */
+    .topnav .nav-links { display: flex; flex-direction: row; gap: 8px; }
+    /* hide the toggle when showing horizontal nav */
+    .nav-toggle { display: none; }
+
+    /* Make primary CTAs full width and large enough for touch */
+    .view-button, .buy-button, .cta-button, .thingyverse-button {
+        width: 100%;
+        min-height: 56px;
+        padding: 14px 18px;
+        font-size: 1.05rem;
+    }
+
+    /* Form inputs bigger and spaced for touch + easier reading */
+    .checkout-form {
+        gap: 20px;
+    }
+    .checkout-form input, .checkout-form textarea {
+        padding: 16px 18px;
+        font-size: 1.05rem;
+    }
+
+    /* Radios and labels larger to avoid mis-taps */
+    .payment-row input[type="radio"] { width: 20px; height: 20px; }
+    .payment-row label { padding: 10px 12px; }
+
+    /* Stack product grids to a single column for legibility */
+    .products-container, .shop-grid, .cards-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Avoid a fixed footer covering content on small screens */
+    footer { position: static; padding: 22px 12px; }
+
+    /* Reduce clutter for screen readers: ensure focus order remains natural */
+    .topnav .theme-toggle { margin-left: 0; margin-top: 8px; }
+
+    /* Keep animations subtle on phones */
+    .reveal { transform: none; opacity: 1; }
 }
 
 .product-card {
@@ -924,4 +988,82 @@ footer p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+
+/* Mobile accessibility improvements */
+/* Ensure legible text and comfortable touch targets on small screens */
+@media (max-width: 768px) {
+    html { font-size: 18px; }
+    body { line-height: 1.7; }
+    .view-button, .buy-button, .cta-button, .thingyverse-button, .back-to-top {
+        min-height: 48px;
+        padding: 14px 20px;
+        touch-action: manipulation;
+    }
+    .checkout-form input, .checkout-form textarea {
+        padding: 16px 18px;
+        font-size: 1.05rem;
+    }
+    footer {
+        position: static;
+        padding-bottom: 30px;
+    }
+
+    /* Responsive nav: hide links behind toggle */
+    .nav-toggle { display: inline-flex; }
+    .topnav { align-items: center; }
+    .topnav .nav-links { display: none; width: 100%; }
+    .topnav.open .nav-links { display: flex; flex-direction: column; gap: 8px; }
+    .topnav .nav-links a { width: 100%; padding: 12px 16px; }
+}
+
+/* Accessible focus styles */
+:focus {
+    outline: 3px solid rgba(49, 215, 255, 0.36);
+    outline-offset: 3px;
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    left: 12px;
+    top: 12px;
+    width: auto;
+    height: auto;
+    padding: 10px 14px;
+    background: #fff;
+    color: #5a3f8a;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(92,63,140,0.18);
+    z-index: 9999;
+}
+
+/* Larger radio inputs for touch */
+.payment-row input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+.payment-row label {
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+/* Make interactive elements easier to target */
+.topnav a, nav a {
+    border-radius: 8px;
+}
+
+/* Ensure images scale correctly (already present but reinforced) */
+img { max-width: 100%; height: auto; }
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
 }
