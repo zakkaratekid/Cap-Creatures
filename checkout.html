@@ -13,47 +13,95 @@
         <a href="products.html">Products</a>
         <a href="quiz.html">Quiz</a>
         <a href="contact.html">Contact</a>
+        <a href="shop.html">Shop</a>
     </div>
 
     <main id="main-content">
     <div class="hero-alt">
-        <h1>Checkout</h1>
-        <p>Complete your order and get ready to show off your new Cap Creature.</p>
+        <h1 id="checkout-hero-title">Checkout</h1>
+        <p id="checkout-hero-copy">Complete your order and get ready to show off your new Cap Creature.</p>
     </div>
 
-    <div class="card">
-        <h2>Your Order</h2>
-        <p>Thanks for shopping with Cap Creatures! Fill in your details and confirm your order below.</p>
-        <ul class="checkout-list">
-            <li>1x Cap Creature Accessory</li>
-            <li>Shipping: Standard</li>
-            <li>Total: £10.00</li>
-        </ul>
-
-        <form id="checkout-form" class="checkout-form">
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" placeholder="Your full name" required>
-
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="you@example.com" required>
-
-            <label for="address">Delivery Address</label>
-            <textarea id="address" name="address" rows="4" placeholder="Street, city, postcode" required></textarea>
-            <div class="payment-row">
-                <input id="payment-card" type="radio" name="payment" value="card" checked>
-                <label for="payment-card">Card</label>
-
-                <input id="payment-paypal" type="radio" name="payment" value="paypal">
-                <label for="payment-paypal">PayPal</label>
+    <section class="checkout-summary">
+        <div class="product-preview">
+            <img id="checkout-product-image" src="ChatGPT Image Jun 7, 2026, 02_34_59 PM.png" alt="Cap Creature preview">
+            <div>
+                <h2 id="checkout-product-heading">Your Cap Creature Order</h2>
+                <p id="checkout-product-description">Complete your checkout with a creature-themed order summary and fast shipping.</p>
             </div>
-            <button type="submit" class="view-button">Confirm Order</button>
-        </form>
-
-        <div id="order-confirmation" class="order-confirmation" hidden role="status" aria-live="polite" tabindex="-1">
-            <h3>Order Confirmed!</h3>
-            <p>Thanks for your purchase. We've received your order and will reach out shortly with shipping details.</p>
-            <a href="index.html" class="view-button">Back to Home</a>
         </div>
+    </section>
+
+    <div class="card checkout-grid">
+        <div class="checkout-main">
+            <h2>Your Order</h2>
+            <p>Thanks for shopping with Cap Creatures! Fill in your details and confirm your order below.</p>
+
+            <form id="checkout-form" class="fs-form checkout-form" action="https://formspree.io/f/mvzyneel" method="POST">
+                <input type="hidden" name="_subject" value="New Cap Creature Order">
+                <input type="hidden" id="formspree-next" name="_next" value="">
+                <input type="hidden" name="_format" value="json">
+                <div class="checkout-steps">
+                    <div class="checkout-step active">1. Creature</div>
+                    <div class="checkout-step">2. Delivery</div>
+                    <div class="checkout-step">3. Confirm</div>
+                </div>
+                <div class="note-box">
+                    <p><strong>Looking for a bold creature?</strong> Your selected cap creature is ready to ship with fast delivery and a custom adventure-style finish.</p>
+                </div>
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" placeholder="Your full name" required>
+
+                <label for="email">Email</label>
+                <input id="email" type="email" name="_replyto" placeholder="you@example.com" required>
+                <input id="checkout-product-field" type="hidden" name="product" value="Cap Creature Accessory">
+
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" rows="4" placeholder="Street, city, postcode" required></textarea>
+
+                <div class="payment-row">
+                    <div class="payment-option">
+                        <input id="payment-card" type="radio" name="payment" value="card" checked>
+                        <label for="payment-card">Card</label>
+                    </div>
+                    <div class="payment-option">
+                        <input id="payment-paypal" type="radio" name="payment" value="paypal">
+                        <label for="payment-paypal">PayPal</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="view-button submit-button">Confirm Order</button>
+                <div id="form-status-message" class="form-status-message" aria-live="polite"></div>
+            </form>
+
+            <div id="order-confirmation" class="order-confirmation" hidden role="status" aria-live="polite" tabindex="-1">
+                <h3>Order Confirmed!</h3>
+                <p>Thanks for your purchase. We've received your order and will reach out shortly with shipping details.</p>
+                <a href="index.html" class="view-button">Back to Home</a>
+            </div>
+        </div>
+
+        <aside class="checkout-sidebar">
+            <div class="sidebar-panel">
+                <h3>Order Summary</h3>
+                <ul class="checkout-list">
+                    <li id="checkout-item-detail">1x Cap Creature Accessory</li>
+                    <li id="checkout-shipping-detail">Shipping: Standard</li>
+                    <li id="checkout-total">Total: £10.00</li>
+                </ul>
+            </div>
+            <div class="sidebar-panel sidebar-highlight">
+                <h4>Creature Perks</h4>
+                <ul>
+                    <li>Cap creature collectible tag</li>
+                    <li>Ready to attach in seconds</li>
+                </ul>
+            </div>
+            <div class="sidebar-panel sidebar-cta">
+                <h4>Need a quick upgrade?</h4>
+                <p>Choose express shipping at checkout and get your Cap Creature faster.</p>
+            </div>
+        </aside>
     </div>
     </main>
 
@@ -63,14 +111,102 @@
 
     <script src="script.js"></script>
     <script>
-        document.getElementById('checkout-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            document.getElementById('checkout-form').hidden = true;
-            var confirmation = document.getElementById('order-confirmation');
+        const checkoutParam = new URLSearchParams(window.location.search).get('product');
+        const checkoutProducts = {
+            'Crocodile Creature Cap': {
+                name: 'Crocodile Creature Cap',
+                image: 'ChatGPT Image Jun 7, 2026, 02_34_59 PM.png',
+                description: 'A bold, fierce cap creature that brings serious style and confidence to your hat.',
+                price: '£10.00',
+                summary: 'Strong scales and a rugged edge for a statement-making look.'
+            },
+            'Snake Creature Cap': {
+                name: 'Snake Creature Cap',
+                image: 'ChatGPT Image Jun 7, 2026, 12_26_17 AM.png',
+                description: 'A sleek serpent-themed accessory for stealthy style and smooth attitude.',
+                price: '£10.00',
+                summary: 'Perfect for bold hat wearers who love sleek and mysterious design.'
+            },
+            'Froggy Creature Cap': {
+                name: 'Froggy Creature Cap',
+                image: 'ChatGPT Image Jun 7, 2026, 02_36_31 PM.png',
+                description: 'A playful frog creature with bright eyes and fun, lively charm.',
+                price: '£10.00',
+                summary: 'Great for nature lovers who want a cute and energetic accessory.'
+            }
+        };
+
+        const selectedProduct = checkoutProducts[checkoutParam] || checkoutProducts['Crocodile Creature Cap'];
+        document.getElementById('checkout-hero-title').textContent = `Checkout ${selectedProduct.name}`;
+        document.getElementById('checkout-hero-copy').textContent = `Complete your order for the ${selectedProduct.name} and spruce up your cap with creature character.`;
+        document.getElementById('checkout-product-image').src = selectedProduct.image;
+        document.getElementById('checkout-product-image').alt = selectedProduct.name;
+        document.getElementById('checkout-product-heading').textContent = selectedProduct.name;
+        document.getElementById('checkout-product-description').textContent = selectedProduct.summary;
+        document.getElementById('checkout-item-detail').textContent = `1x ${selectedProduct.name}`;
+        document.getElementById('checkout-total').textContent = `Total: ${selectedProduct.price}`;
+        document.getElementById('checkout-product-field').value = selectedProduct.name;
+
+        const checkoutSteps = document.querySelectorAll('.checkout-step');
+        const addressField = document.getElementById('address');
+        const nameField = document.getElementById('name');
+        const emailField = document.getElementById('email');
+
+        function setCheckoutStep(index) {
+            checkoutSteps.forEach(function(step, stepIndex) {
+                step.classList.toggle('active', stepIndex === index);
+            });
+        }
+
+        function updateCheckoutStep() {
+            if (document.activeElement === addressField || addressField.value.trim().length > 0) {
+                setCheckoutStep(1);
+                return;
+            }
+            if (document.activeElement === nameField || document.activeElement === emailField) {
+                setCheckoutStep(0);
+                return;
+            }
+            setCheckoutStep(0);
+        }
+
+        nameField.addEventListener('focus', updateCheckoutStep);
+        emailField.addEventListener('focus', updateCheckoutStep);
+        addressField.addEventListener('focus', updateCheckoutStep);
+        addressField.addEventListener('input', updateCheckoutStep);
+
+        const checkoutForm = document.getElementById('checkout-form');
+        const submitButton = checkoutForm.querySelector('button[type="submit"]');
+        const formStatusMessage = document.getElementById('form-status-message');
+
+        function showFormStatus(message, isError) {
+            formStatusMessage.textContent = message;
+            formStatusMessage.classList.toggle('form-status-error', isError);
+            formStatusMessage.classList.toggle('form-status-success', !isError);
+        }
+
+        const nextField = document.getElementById('formspree-next');
+        const urlParams = new URLSearchParams(window.location.search);
+        const successState = urlParams.get('success') === 'true';
+
+        if (successState) {
+            checkoutForm.hidden = true;
+            setCheckoutStep(2);
+            showFormStatus('Order successfully sent to Formspree!', false);
+            const confirmation = document.getElementById('order-confirmation');
             confirmation.hidden = false;
             confirmation.scrollIntoView({ behavior: 'smooth' });
-            // Move focus to the confirmation region so screen readers announce it
-            setTimeout(function(){ confirmation.focus(); }, 300);
+        }
+
+        if (nextField) {
+            const currentProduct = urlParams.get('product') || 'Crocodile Creature Cap';
+            nextField.value = `checkout.html?product=${encodeURIComponent(currentProduct)}&success=true`;
+        }
+
+        checkoutForm.addEventListener('submit', function() {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            showFormStatus('Sending your order to Formspree...', false);
         });
     </script>
 </body>
