@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="constructionTitle constructionDesc">
+  <title id="constructionTitle">Under Construction</title>
+  <desc id="constructionDesc">Yellow safety cone icon for an under construction overlay.</desc>
+  <rect width="200" height="200" rx="24" fill="#111"/>
+  <path d="M60 140 L80 60 L120 60 L140 140 Z" fill="#f2c94c"/>
+  <path d="M74 118 L126 118 L118 130 L82 130 Z" fill="#111"/>
+  <path d="M84 96 L116 96 L110 108 L90 108 Z" fill="#111"/>
+  <path d="M88 72 L112 72 L108 84 L92 84 Z" fill="#111"/>
+  <circle cx="100" cy="42" r="12" fill="#f2c94c"/>
+  <circle cx="100" cy="42" r="6" fill="#111"/>
+</svg>
